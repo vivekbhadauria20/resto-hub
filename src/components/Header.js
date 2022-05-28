@@ -10,6 +10,7 @@ import { MdShoppingBasket, MdAdd, MdLogout } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
+import About from "./About";
 
 const Header = () => {
   const firebaseAuth = getAuth(app);
@@ -69,7 +70,9 @@ const Header = () => {
               className="text-base text-textColor hover:text-headingColor duration-100 trasition-all ease-in-out cursor-pointer"
               onClick={() => setIsMenu(false)}
             >
+              <Link to={"/"}>
               Home
+              </Link>
             </li>
             <li
               className="text-base text-textColor hover:text-headingColor duration-100 trasition-all ease-in-out cursor-pointer"
@@ -81,7 +84,7 @@ const Header = () => {
               className="text-base text-textColor hover:text-headingColor duration-100 trasition-all ease-in-out cursor-pointer"
               onClick={() => setIsMenu(false)}
             >
-              About Us
+              <Link to={'/About'}>About Us</Link> 
             </li>
             <li
               className="text-base text-textColor hover:text-headingColor duration-100 trasition-all ease-in-out cursor-pointer"
@@ -118,7 +121,7 @@ const Header = () => {
                 exit={{ opacity: 0, scale: 0.6 }}
                 className="w-40 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-14 right-0"
               >
-                {user && user.email === "shreyansh1029@gmail.com" && (
+                {user && user.email === "shreyansh1029@gmail.com"  || user.email === "chetan.verma_cs19@gla.ac.in"  && (
                   <Link to={"/createItem"}>
                     <p
                       className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor text-base"
