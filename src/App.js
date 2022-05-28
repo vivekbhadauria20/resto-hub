@@ -37,10 +37,7 @@ const App = () => {
         <main className="mt-14 md:mt-20 px-4 md:px-16 py-4 w-full">
           <Routes>
             <Route path="/" element={<MainContainer />} />
-<<<<<<< HEAD
-            <Route path="/About" element={<About/>} />
-            <Route path="/createItem" element={<CreateContainer />} />
-=======
+            <Route path="/about" element={<About/>} />
             {user &&
               user.email ===
                 ("shreyansh1029@gmail.com" ||
@@ -49,7 +46,6 @@ const App = () => {
               )}
             {user && <Route path="/checkout" element={<CheckoutContainer />} />}
             <Route path="/*" element={<ErrorPage />} />
->>>>>>> dfe7efc3f9b4cc35e1d24679acfa11e272869ca2
           </Routes>
         </main>
       </div>
