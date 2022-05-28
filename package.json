@@ -1,8 +1,8 @@
 {
+  "homepage": "https://shreyansh-solanki.github.io/resto-hub/",
   "name": "resto-hub",
   "version": "0.1.0",
-  "homepage": "https://shreyansh-solanki.github.io/resto-hub/",
-  "private": false,
+  "public": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
