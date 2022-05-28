@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { RiRefreshFill } from "react-icons/ri";
 import { motion } from "framer-motion";
@@ -9,7 +9,16 @@ import CartItem from "./CartItem";
 
 const CartContainer = () => {
   const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
-  console.log(cartItems);
+  //   console.log(cartItems);
+  const [flag, setFlag] = useState(1);
+  const [tot, setTot] = useState(0);
+
+  useEffect(() => {
+    let totalPrice = cartItems.reduce(function (accumulator, item) {
+      return accumulator + item.qty * item.price;
+    }, 0);
+    setTot(totalPrice);
+  }, [tot, flag, cartItems]);
 
   const showCart = () => {
     dispatch({
@@ -17,6 +26,15 @@ const CartContainer = () => {
       cartShow: !cartShow,
     });
   };
+
+  const clearCart = () => {
+    dispatch({
+      type: actionType.SET_CARTITEMS,
+      cartItems: [],
+    });
+  };
+
+  localStorage.setItem("cartItems", JSON.stringify([]));
 
   return (
     <motion.div
@@ -35,6 +53,7 @@ const CartContainer = () => {
           whileTap={{ scale: 0.75 }}
           className="flex items-center gap-2 p-1 px-2 my-2 bg-gray-100 rounded-md
           hover:shadow-md cursor-pointer text-textColor text-base"
+          onClick={clearCart}
         >
           Clear <RiRefreshFill />
         </motion.p>
@@ -47,14 +66,21 @@ const CartContainer = () => {
           <div className="w-full h-340 md:h-42 px-6 py-10 flex flex-col gap-3 overflow-y-scroll scrollbar-none">
             {/* cart Item  */}
             {cartItems &&
-              cartItems.map((item) => <CartItem key={item.id} item={item} />)}
+              cartItems.map((item) => (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  setFlag={setFlag}
+                  flag={flag}
+                />
+              ))}
           </div>
 
           {/* cart total section  */}
           <div className="w-full flex-1 bg-gray-700 rounded-t-[2rem] flex flex-col items-center justify-evenly px-8 py-2 h-[50%]">
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-300 text-lg">Sub Total </p>
-              {<p className="text-gray-300 text-lg">$ 11</p>}
+              {<p className="text-gray-300 text-lg">$ {tot}</p>}
             </div>
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-300 text-lg">Delivery </p>
@@ -63,7 +89,9 @@ const CartContainer = () => {
             <div className="w-full border-b border-gray-700 my-2"></div>
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-200 text-lg font-semibold">Total </p>
-              <p className="text-gray-200 text-lg font-semibold">$ 11.0</p>
+              <p className="text-gray-200 text-lg font-semibold">
+                $ {tot + 2.5}
+              </p>
             </div>
             {user ? (
               <motion.button

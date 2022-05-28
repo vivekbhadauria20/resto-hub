@@ -1,11 +1,12 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { motion } from "framer-motion";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 
-const CartItem = ({ item }) => {
-  const [qty, setQty] = useState(1);
+const CartItem = ({ item, setFlag, flag }) => {
+  const [qty, setQty] = useState(item.qty);
   const [{ cartItems }, dispatch] = useStateValue();
 
   const [items, setItems] = useState([]);
@@ -24,6 +25,7 @@ const CartItem = ({ item }) => {
       cartItems.map((item) => {
         if (item.id === id) {
           item.qty += 1;
+          setFlag(flag + 1);
         }
       });
       cartDispatch();
@@ -32,6 +34,7 @@ const CartItem = ({ item }) => {
         setItems(cartItems.filter((item) => item.id !== id));
         cartDispatch();
       } else {
+        setFlag(flag - 1);
         setQty(qty - 1);
         cartItems.map((item) => {
           if (item.id === id) {
@@ -45,7 +48,7 @@ const CartItem = ({ item }) => {
 
   useEffect(() => {
     setItems(cartItems);
-  }, [qty]);
+  }, [qty, item, cartItems]);
 
   return (
     <div className="w-full p-1 px-2 rounded-lg bg-cartItem flex items-center gap-2">
@@ -57,7 +60,13 @@ const CartItem = ({ item }) => {
 
       {/* name section  */}
       <div className="flex flex-col gap-2">
-        <p className="text-base text-gray-50">{item?.name}</p>
+        <p className="text-base text-gray-50">
+          {`${
+            item?.title?.length > 10
+              ? `${item?.title.slice(0, 10)}...`
+              : item?.title
+          }`}{" "}
+        </p>
         <p className="text-sm block text-gray-300 font-semibold">
           $ {parseFloat(item?.price) * qty}
         </p>
