@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { RiRefreshFill } from "react-icons/ri";
@@ -6,9 +7,30 @@ import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import EmptyCart from "../img/emptyCart.svg";
 import CartItem from "./CartItem";
+import { Link } from "react-router-dom";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { app } from "../firebase.config";
 
 const CartContainer = () => {
+  const firebaseAuth = getAuth(app);
+  const provider = new GoogleAuthProvider();
   const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
+  const [isMenu, setIsMenu] = useState(false);
+
+  const login = async () => {
+    if (!user) {
+      const {
+        user: { refreshToken, providerData },
+      } = await signInWithPopup(firebaseAuth, provider);
+      dispatch({
+        type: actionType.SET_USER,
+        user: providerData[0],
+      });
+      localStorage.setItem("user", JSON.stringify(providerData[0]));
+    } else {
+      setIsMenu(!isMenu);
+    }
+  };
   //   console.log(cartItems);
   const [flag, setFlag] = useState(1);
   const [tot, setTot] = useState(0);
@@ -34,8 +56,7 @@ const CartContainer = () => {
     });
   };
 
-  localStorage.setItem("cartItems", JSON.stringify([]));
-
+  localStorage.setItem("cartItems", JSON.stringify([cartItems]));
   return (
     <motion.div
       initial={{ opacity: 0, x: 200 }}
@@ -94,18 +115,24 @@ const CartContainer = () => {
               </p>
             </div>
             {user ? (
-              <motion.button
-                whileTap={{ scale: 0.8 }}
-                type="button"
-                className=" my-3 w-full bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg shadow-xl py-3 px-3 tracking-wide md:left-0 text-white font-semibold text-lg"
+              <Link
+                to={"/checkout"}
+                className=" my-3 w-full bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg shadow-xl py-3 px-3 tracking-wide md:left-0"
               >
-                Check Out
-              </motion.button>
+                <motion.button
+                  whileTap={{ scale: 0.8 }}
+                  type="button"
+                  className=" w-full md:left-0 text-white font-semibold text-lg"
+                >
+                  Check Out
+                </motion.button>
+              </Link>
             ) : (
               <motion.button
                 whileTap={{ scale: 0.8 }}
                 type="button"
                 className=" my-3 w-full bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg shadow-xl py-3 px-3 tracking-wide md:left-0 text-white font-semibold text-lg"
+                onClick={login}
               >
                 Login to check out
               </motion.button>

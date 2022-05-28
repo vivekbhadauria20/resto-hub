@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -30,8 +31,10 @@ const Header = () => {
         user: providerData[0],
       });
       localStorage.setItem("user", JSON.stringify(providerData[0]));
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
     } else {
       setIsMenu(!isMenu);
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
     }
   };
 
@@ -70,9 +73,13 @@ const Header = () => {
               className="text-base text-textColor hover:text-headingColor duration-100 trasition-all ease-in-out cursor-pointer"
               onClick={() => setIsMenu(false)}
             >
+<<<<<<< HEAD
               <Link to={"/"}>
               Home
               </Link>
+=======
+              <Link to="/">Home</Link>
+>>>>>>> dfe7efc3f9b4cc35e1d24679acfa11e272869ca2
             </li>
             <li
               className="text-base text-textColor hover:text-headingColor duration-100 trasition-all ease-in-out cursor-pointer"
@@ -121,6 +128,7 @@ const Header = () => {
                 exit={{ opacity: 0, scale: 0.6 }}
                 className="w-40 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-14 right-0"
               >
+<<<<<<< HEAD
                 {user && user.email === "shreyansh1029@gmail.com"  || user.email === "chetan.verma_cs19@gla.ac.in"  && (
                   <Link to={"/createItem"}>
                     <p
@@ -132,6 +140,22 @@ const Header = () => {
                     </p>
                   </Link>
                 )}
+=======
+                {user &&
+                  user.email ===
+                    ("shreyansh1029@gmail.com" ||
+                      "chetan.verma_cs19@gla.ac.in") && (
+                    <Link to={"/createItem"}>
+                      <p
+                        className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor text-base"
+                        onClick={() => setIsMenu(false)}
+                      >
+                        New Item
+                        <MdAdd />
+                      </p>
+                    </Link>
+                  )}
+>>>>>>> dfe7efc3f9b4cc35e1d24679acfa11e272869ca2
                 <p
                   className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor text-base"
                   onClick={logout}
@@ -195,7 +219,7 @@ const Header = () => {
                   className="text-base text-textColor hover:text-headingColor duration-100 trasition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2"
                   onClick={() => setIsMenu(false)}
                 >
-                  Home
+                  <Link to="/">Home</Link>
                 </li>
                 <li
                   className="text-base text-textColor hover:text-headingColor duration-100 trasition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2"
