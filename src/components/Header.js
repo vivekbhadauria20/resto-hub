@@ -85,6 +85,13 @@ const Header = () => {
             </li>
             <li
               className="text-base text-textColor hover:text-headingColor duration-100 trasition-all ease-in-out cursor-pointer"
+            >
+              <Link to={'/createItem'}>
+                Create Item
+              </Link>
+            </li>
+            <li
+              className="text-base text-textColor hover:text-headingColor duration-100 trasition-all ease-in-out cursor-pointer"
               onClick={() => setIsMenu(false)}
             >
               <Link to={'/About'}>About Us</Link> 
@@ -205,6 +212,12 @@ const Header = () => {
                   onClick={() => setIsMenu(false)}
                 >
                   Menu
+                </li>
+                <li
+                  className="text-base text-textColor hover:text-headingColor duration-100 trasition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2"
+                  onClick={() => setIsMenu(false)}
+                >
+                  <Link to="/createItem">Create Item</Link>
                 </li>
                 <li
                   className="text-base text-textColor hover:text-headingColor duration-100 trasition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2"

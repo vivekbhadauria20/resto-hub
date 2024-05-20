@@ -40,8 +40,7 @@ const App = () => {
             <Route path="/about" element={<About/>} />
             {user &&
               user.email ===
-                ("shreyansh1029@gmail.com" ||
-                  "chetan.verma_cs19@gla.ac.in") && (
+                ("vs.thakur0001@gmail.com") && (
                 <Route path="/createItem" element={<CreateContainer />}></Route>
               )}
             {user && <Route path="/checkout" element={<CheckoutContainer />} />}
