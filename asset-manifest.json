@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/resto-hub/static/css/main.3081f052.css",
+    "main.js": "/resto-hub/static/js/main.eaf6b349.js",
+    "static/media/c3.png": "/resto-hub/static/media/c3.55f83414f33f66456b35.png",
+    "static/media/d6.png": "/resto-hub/static/media/d6.5fd9500716b352d8d3dd.png",
+    "static/media/logo.png": "/resto-hub/static/media/logo.0f99324454e3c3ccba98.png",
+    "static/media/f1.png": "/resto-hub/static/media/f1.c52686695ee9a5c4cd0d.png",
+    "static/media/i1.png": "/resto-hub/static/media/i1.3d9b129d2c5432c6f1fb.png",
+    "static/media/heroBg.png": "/resto-hub/static/media/heroBg.c43c4862422e70d88698.png",
+    "static/media/delivery.png": "/resto-hub/static/media/delivery.bf9130a0962fbe091abc.png",
+    "static/media/avatar.png": "/resto-hub/static/media/avatar.68cdc4513e601d28a382.png",
+    "static/media/emptyCart.svg": "/resto-hub/static/media/emptyCart.71ad17e692d71caa77c6c9351f84756b.svg",
+    "static/media/NotFound.svg": "/resto-hub/static/media/NotFound.4e90bb93460bfd8d9e2c86b42ef91a4a.svg",
+    "index.html": "/resto-hub/index.html",
+    "main.3081f052.css.map": "/resto-hub/static/css/main.3081f052.css.map",
+    "main.eaf6b349.js.map": "/resto-hub/static/js/main.eaf6b349.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3081f052.css",
+    "static/js/main.eaf6b349.js"
+  ]
+}
